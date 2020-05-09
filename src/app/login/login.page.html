@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login page</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Your planner</ion-card-title>
+      <img src="assets/planer.png">
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-input [(ngModel)]="username" placeholder="Username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="password" placeholder="Password" type="password"></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="ion-padding">
+    <ion-button expand="block" type="submit" class="ion-no-margin" (click)="login()">Login</ion-button>
+  </div>
+
+  <div  style="text-align: center; padding: 2%;">
+    <a (click)="register()">Don't have an account? Register here!</a>
+  </div>
+</ion-content>
