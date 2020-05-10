@@ -14,5 +14,5 @@ export class HomePage {
     localStorage.removeItem('token');
     this.router.navigate(['login']);
   }
-
+ 
 }
