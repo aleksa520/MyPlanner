@@ -55,10 +55,6 @@ export class RegisterPage implements OnInit {
     await alert.present();
   }
 
-
-
-
-
   ngOnInit() {
   }
 

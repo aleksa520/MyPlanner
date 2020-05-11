@@ -1,0 +1,56 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-buttons collapse="true" slot="start">
+
+      <ion-icon name="arrow-back" (click)="goBack()"></ion-icon>
+
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+
+  <ion-list lines="full" class="ion-no-margin ion-no-padding">
+    
+    <ion-item>
+      <br>
+      <ion-label position="stacked">First Name</ion-label>
+      <ion-input [(ngModel)]="firstName"></ion-input>
+      <br>
+    </ion-item>
+
+    <ion-item>
+      <br>
+      <ion-label position="stacked">Last Name</ion-label>
+      <ion-input [(ngModel)]="lastName"></ion-input>
+      <br>
+    </ion-item>
+
+    <ion-item>
+      <br>
+      <ion-label position="stacked">Username</ion-label>
+      <ion-input [(ngModel)]="username"></ion-input>
+      <br>
+    </ion-item>
+
+    <ion-item>
+      <br>
+      <ion-label position="stacked">Password</ion-label>
+      <ion-input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password"></ion-input>
+      <ion-icon (click)="togglePassword()" [name]="passwordTogleItem" color="gray" slot="end"></ion-icon>
+      <br>
+    </ion-item>
+
+    <ion-item>
+      <br>
+      <ion-label position="stacked">Age</ion-label>
+      <ion-input [(ngModel)]="age"></ion-input>
+      <br>
+    </ion-item>
+
+  </ion-list>
+  <div class="ion-padding">
+    <ion-button (click)="onsubmit()" expand="block" type="submit" class="ion-no-margin">Save Changes</ion-button>
+  </div>
+</ion-content>
