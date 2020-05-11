@@ -1,53 +1,110 @@
 <ion-header translucent="true">
   <ion-toolbar>
     <ion-buttons collapse="true" slot="start">
-
-        <ion-icon name="arrow-back" (click)="goBack()"></ion-icon>
-
-    </ion-buttons> 
-    <ion-title>Register</ion-title>  
+      <ion-icon name="arrow-back" (click)="goBack()"></ion-icon>
+    </ion-buttons>
+    <ion-title>Register</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
-      
-        <ion-list lines="full" class="ion-no-margin ion-no-padding">
-          <ion-item>
-            <ion-label position="stacked">First Name <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input type="text" [(ngModel)]="firstName" text-right id="input" ></ion-input>
-          </ion-item>
+  <div class="ion-padding">
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+      <ion-list>
 
-          <ion-item>
-            <ion-label position="stacked">Last Name <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input type="text" [(ngModel)]="lastName" text-right id="input" ></ion-input>
-          </ion-item>
-        
-          <ion-item>
-            <ion-label position="stacked">Username <ion-text color="danger">*</ion-text>
-            </ion-label>
-            <ion-input type="text" [(ngModel)]="username" text-right id="input" ></ion-input>
-          </ion-item>
-    
-          <ion-item>
-            <ion-label position="stacked">Password <ion-text color="danger">*</ion-text>
-            </ion-label>
-            <ion-input type="password" [(ngModel)]="password" text-right id="input" ></ion-input>
-          </ion-item>
-    
-          <ion-item>
-            <ion-label position="stacked">Confirm password <ion-text color="danger">*</ion-text>
-            </ion-label>
-            <ion-input type="password" [(ngModel)]="confirmedPass" text-right id="input" ></ion-input>
-          </ion-item>
-          
-          <ion-item>
-            <ion-label position="floating">Age</ion-label>
-            <ion-input type="number" [(ngModel)]="age"></ion-input>
-          </ion-item>
-        </ion-list>
+        <ion-item>
+          <ion-label position="stacked">First Name <ion-text color="danger">*</ion-text>
+          </ion-label>
+          <ion-input [(ngModel)]="firstName" autocapitalize inputmode="text" formControlName="fname"></ion-input>
+        </ion-item>
 
-        <div class="ion-padding">
-          <ion-button (click)="onsubmit()" expand="block" type="submit" class="ion-no-margin">Create account</ion-button>
+        <div class="error-messages">
+          <ng-container *ngFor="let error of error_messages.fname">
+            <div class="error-message"
+              *ngIf="loginForm.get('fname').hasError(error.type) && (loginForm.get('fname').dirty || loginForm.get('fname').touched)">
+              {{ error.message }}
+            </div>
+          </ng-container>
         </div>
 
-    </ion-content>
+        <ion-item>
+          <ion-label position="stacked">Last Name <ion-text color="danger">*</ion-text>
+          </ion-label>
+          <ion-input [(ngModel)]="lastName"  autocapitalize inputmode="text" formControlName="lname"></ion-input>
+        </ion-item>
+
+        <div class="error-messages">
+          <ng-container *ngFor="let error of error_messages.lname">
+            <div class="error-message"
+              *ngIf="loginForm.get('lname').hasError(error.type) && (loginForm.get('lname').dirty || loginForm.get('lname').touched)">
+              {{ error.message }}
+            </div>
+          </ng-container>
+        </div>
+
+
+        <ion-item>
+          <ion-label position="stacked">Username <ion-text color="danger">*</ion-text>
+          </ion-label>
+          <ion-input [(ngModel)]="username"  type="text" formControlName="email"></ion-input>
+        </ion-item>
+
+        <div class="error-messages">
+          <ng-container *ngFor="let error of error_messages.email">
+            <div class="error-message" *ngIf="loginForm.get('email').hasError(error.type) && 
+      (loginForm.get('email').dirty || loginForm.get('email').touched)">
+              {{ error.message }}
+            </div>
+          </ng-container>
+        </div>
+
+        <ion-item>
+          <ion-label position="stacked">Password <ion-text color="danger">*</ion-text>
+          </ion-label>
+          <ion-input  [(ngModel)]="passwordInput"  [type]="showPassword ? 'text' : 'password'" formControlName="password"></ion-input>
+        </ion-item>
+
+        <div class="error-messages">
+          <ng-container *ngFor="let error of error_messages.password">
+            <div class="error-message"
+              *ngIf="loginForm.get('password').hasError(error.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+              {{ error.message }}
+            </div>
+          </ng-container>
+        </div>
+
+        <ion-item>
+          <ion-label position="stacked">Confirm Password <ion-text color="danger">*</ion-text>
+          </ion-label>
+          <ion-input [(ngModel)]="confirmedPass"  [type]="showPassword ? 'text' : 'password'" formControlName="confirmpassword"></ion-input>
+          <ion-icon (click)="togglePassword()" [name]="passwordTogleItem" color="gray" slot="end"></ion-icon>
+        </ion-item>
+
+        <div class="error-messages">
+          <ng-container *ngFor="let error of error_messages.confirmpassword">
+            <div class="error-message"
+              *ngIf="loginForm.get('confirmpassword').hasError(error.type) && (loginForm.get('confirmpassword').dirty || loginForm.get('confirmpassword').touched)">
+              {{ error.message }}
+            </div>
+          </ng-container>
+          <div class="error-message"
+            *ngIf="!loginForm.get('confirmpassword').errors && loginForm.hasError('passwordNotMatch') && (loginForm.get('confirmpassword').dirty || loginForm.get('confirmpassword').touched)">
+            Password and Confirm Password fields should match
+          </div>
+        </div>
+
+        <ion-item>
+          <ion-label position="floating">Age</ion-label>
+          <ion-input [(ngModel)]="age" type="number" formControlName="age"></ion-input>
+        </ion-item>
+
+      </ion-list>
+
+      <ion-button [disabled]="!loginForm.valid" type="submit" expand="block">
+        Register <ion-icon slot="end" name="create">
+        </ion-icon>
+      </ion-button>
+
+    </form>
+  </div>
+</ion-content>
