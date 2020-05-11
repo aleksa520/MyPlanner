@@ -1,18 +1,37 @@
-import { Component } from '@angular/core';
+import { OnInit,Component} from '@angular/core';
 import {Router} from '@angular/router';
+import {HttpHeaders, HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit{
+  userDetails;
 
-  constructor(private router:Router) {}
+  constructor(private router: Router, private Http: HttpClient) {}
 
-  Logout(){
+  ngOnInit() {
+    this.getUserProfile().subscribe(
+        res => {
+          this.userDetails = res;
+        },
+        err => {
+          console.log(err);
+        },
+    );
+  }
+
+  Logout() {
     localStorage.removeItem('token');
     this.router.navigate(['login']);
   }
- 
+
+  getUserProfile() {
+    let tokenHeder = new HttpHeaders({Authorization: 'Bearer ' + localStorage.getItem('token')});
+    return this.Http.get('https://localhost:44336/api/UserProfile', {headers: tokenHeder});
+  }
+
+
 }

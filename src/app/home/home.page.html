@@ -46,7 +46,7 @@
   
     <ion-item (click)="Logout()">
       <ion-icon name="close-circle" slot="start"></ion-icon>
-      <ion-label>Logout</ion-label>
+      <ion-label *ngIf="userDetails">Logout {{userDetails.firstName}}</ion-label>
     </ion-item>
   </ion-card>
 
