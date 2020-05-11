@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private router: Router, private Http: HttpClient) { }
+  constructor(private router: Router, private Http: HttpClient, public alertController: AlertController) { }
   readonly BaseURL = 'https://localhost:44336/api';
   ngOnInit() {
     if(localStorage.getItem('token') != null)
@@ -19,10 +20,17 @@ export class LoginPage implements OnInit {
   username:string;
   password:string;
 
-  login1(){
-    console.log(this.username + " " + this.password);
-    this.router.navigate(['/home']);
+  async loginAlert() {
+    const alert = await this.alertController.create({
+
+      subHeader: 'Login failed!',
+      message: 'Username and pasword dont match.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
+
   login(){
     var body = {
       username : this.username,
@@ -38,7 +46,7 @@ export class LoginPage implements OnInit {
         },
         err => {
           if (err.status == 400){
-            console.log(err);
+            this.loginAlert();
           }
         }
 
