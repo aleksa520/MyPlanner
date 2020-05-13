@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { FormBuilder, Validators, FormGroup, AbstractControl, FormControl } from "@angular/forms";
+import { FormBuilder, Validators, FormGroup, AbstractControl, FormControl } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 
 
@@ -51,51 +51,51 @@ export class RegisterPage implements OnInit {
   confirmedPass: string;
   age: number;
 
-  password(formGroup: FormGroup) {
-    const { value: password } = formGroup.get('password');
-    const { value: confirmPassword } = formGroup.get('confirmpassword');
-    return password === confirmPassword ? null : { passwordNotMatch: true };
-  }
-
   readonly BaseURL = 'https://localhost:44336/api';
   showPassword = false;
-  passwordTogleItem = "eye";
+  passwordTogleItem = 'eye';
   loginForm: FormGroup;
 
   error_messages = {
-    'fname': [
+    fname: [
       { type: 'required', message: 'First Name is required.' },
     ],
 
-    'lname': [
+    lname: [
       { type: 'required', message: 'Last Name is required.' }
     ],
 
-    'email': [
+    email: [
       { type: 'required', message: 'Email is required.' },
       { type: 'minlength', message: 'Email length.' },
       { type: 'maxlength', message: 'Email length.' },
       { type: 'required', message: 'please enter a valid email address.' }
     ],
 
-    'password': [
+    password: [
       { type: 'required', message: 'password is required.' },
       { type: 'minlength', message: 'password length.' },
       { type: 'maxlength', message: 'password length.' }
     ],
-    'confirmpassword': [
+    confirmpassword: [
       { type: 'required', message: 'password is required.' },
       { type: 'minlength', message: 'password length.' },
       { type: 'maxlength', message: 'password length.' },
     ],
+  };
+
+  password(formGroup: FormGroup) {
+    const { value: password } = formGroup.get('password');
+    const { value: confirmPassword } = formGroup.get('confirmpassword');
+    return password === confirmPassword ? null : { passwordNotMatch: true };
   }
 
   togglePassword() {
     this.showPassword = !this.showPassword;
-    if (this.passwordTogleItem == "eye") {
-      this.passwordTogleItem = "eye-off";
+    if (this.passwordTogleItem == 'eye') {
+      this.passwordTogleItem = 'eye-off';
     } else {
-      this.passwordTogleItem = "eye";
+      this.passwordTogleItem = 'eye';
     }
   }
 
@@ -131,7 +131,7 @@ export class RegisterPage implements OnInit {
 
     await alert.present();
   }
-  
+
 
   ngOnInit() {
   }
@@ -141,7 +141,7 @@ export class RegisterPage implements OnInit {
   }
 
   register() {
-    var body = {
+    let body = {
       firstname: this.firstName,
       lastname: this.lastName,
       username: this.username,
@@ -151,31 +151,28 @@ export class RegisterPage implements OnInit {
     return this.Http.post(this.BaseURL + '/User/Register', body);
   }
 
-  submit(){
-    console.log(this.firstName + this.lastName + this.username + this.passwordInput + this.confirmedPass + this.age);  
-  }
 
-  // submit() {
-  //   console.log("--------inputFieldValue-------",this.inputFieldValue);
-  //     (res: any) => {
-  //       if (res.succeeded) {
-  //         this.presentAlert();
-  //         this.router.navigate(['/login']);
-  //       } else {
-  //         res.errors.forEach(element => {
-  //           if (element.code == 'DuplicateUserName') {
-  //             this.DupilcateUser();
-  //             this.username = "";
-  //             this.passwordInput = "";
-  //             this.confirmedPass = "";
-  //           } else if (element.code == 'PasswordTooShort' || element.code == 'PasswordRequiresLower') {
-  //             this.PassAlert();
-  //             this.passwordInput = "";
-  //             this.confirmedPass = "";
-  //           }
-  //         })
-  //       }
-  //     }
-  //   );
-  // }
+   onsubmit() {
+     this.register().subscribe(
+       (res: any) => {
+         if (res.succeeded) {
+           this.presentAlert();
+           this.router.navigate(['/login']);
+         } else {
+           res.errors.forEach(element => {
+             if (element.code == 'DuplicateUserName') {
+               this.DupilcateUser();
+               this.username = '';
+               this.passwordInput = '';
+               this.confirmedPass = '';
+             } else if (element.code == 'PasswordTooShort' || element.code == 'PasswordRequiresLower') {
+              this.PassAlert();
+              this.passwordInput = '';
+              this.confirmedPass = '';
+             }
+           });
+        }
+       });
+
+   }
 }

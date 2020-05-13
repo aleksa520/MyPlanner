@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-profile',
@@ -8,7 +9,23 @@ import {Router} from '@angular/router';
 })
 export class ProfilePage implements OnInit {
 
-  firstName: string = "Laki";
+
+
+
+  constructor(private router: Router, private Http: HttpClient) { }
+  userDetails;
+  ngOnInit() {
+    this.getUserProfile().subscribe(
+        res => {
+          this.userDetails = res;
+        },
+        err => {
+          console.log(err);
+        },
+    );
+  }
+
+  firstName: string = "this.userDetails.firstName"
   lastName: string = "Miric";
   username: string = "sisica";
   password: string = "jasampeder";
@@ -16,12 +33,6 @@ export class ProfilePage implements OnInit {
   show: boolean = false;
   showPassword = false;
   passwordTogleItem = "eye";
-
-
-  constructor(private router: Router) { }
-
-  ngOnInit() {
-  }
 
   togglePassword(){
     this.showPassword = !this.showPassword;
@@ -31,9 +42,15 @@ export class ProfilePage implements OnInit {
       this.passwordTogleItem = "eye";
     }
   }
+  getUserProfile() {
+    return this.Http.get('https://localhost:44336/api/UserProfile');
+
+  }
 
   goBack() {
     this.router.navigate(['/home']);
   }
+
+
 
 }

@@ -31,7 +31,7 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
-  login(){
+  login() {
     var body = {
       username : this.username,
       password : this.password
@@ -40,9 +40,11 @@ export class LoginPage implements OnInit {
   }
   onlogin() {
     this.login().subscribe(
-        (res:any) => {
-          localStorage.setItem('token',res.token);
+        (res: any) => {
+          localStorage.setItem('token', res.token);
+          console.log('token postavljen');
           this.router.navigateByUrl('/home');
+          console.log('token postavljen2');
         },
         err => {
           if (err.status == 400){

@@ -1,4 +1,4 @@
-import { OnInit,Component} from '@angular/core';
+import { OnInit, Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpHeaders, HttpClient} from '@angular/common/http';
 
@@ -7,7 +7,7 @@ import {HttpHeaders, HttpClient} from '@angular/common/http';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit{
+export class HomePage implements OnInit {
   userDetails;
 
   constructor(private router: Router, private Http: HttpClient) {}
@@ -28,10 +28,12 @@ export class HomePage implements OnInit{
     this.router.navigate(['login']);
   }
 
-  getUserProfile() {
-    let tokenHeder = new HttpHeaders({Authorization: 'Bearer ' + localStorage.getItem('token')});
-    return this.Http.get('https://localhost:44336/api/UserProfile', {headers: tokenHeder});
-  }
+   getUserProfile() {
+   return this.Http.get('https://localhost:44336/api/UserProfile');
 
+  }
+  myprofile() {
+    this.router.navigate(['/profile']);
+  }
 
 }
