@@ -16,21 +16,21 @@
     <ion-item>
       <br>
       <ion-label position="stacked">First Name</ion-label>
-      <ion-input [(ngModel)]="firstName"></ion-input>
+      <ion-input *ngIf="userDetails" >  {{userDetails.firstName}} </ion-input>
       <br>
     </ion-item>
 
     <ion-item>
       <br>
       <ion-label position="stacked">Last Name</ion-label>
-      <ion-input [(ngModel)]="lastName"></ion-input>
+      <ion-input *ngIf="userDetails">{{userDetails.lastName}} </ion-input>
       <br>
     </ion-item>
 
     <ion-item>
       <br>
       <ion-label position="stacked">Username</ion-label>
-      <ion-input [(ngModel)]="username"></ion-input>
+      <ion-input *ngIf="userDetails">{{userDetails.userName}}</ion-input>
       <br>
     </ion-item>
 
@@ -45,7 +45,7 @@
     <ion-item>
       <br>
       <ion-label position="stacked">Age</ion-label>
-      <ion-input [(ngModel)]="age"></ion-input>
+      <ion-input *ngIf="userDetails">{{userDetails.age}}</ion-input>
       <br>
     </ion-item>
 
