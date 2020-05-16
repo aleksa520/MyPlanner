@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-
+  <form [formGroup]="TaskForm">
   <ion-grid>
 
     <ion-row>
@@ -23,27 +23,27 @@
           <ion-card-content>
             <ion-item>
               <ion-label position="floating">Task</ion-label>
-              <ion-input type="text" [(ngModel)]="taskTitle"></ion-input>
+              <ion-input type="text" [(ngModel)]="taskTitles"  formControlName="taskTitle"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label position="floating">Description</ion-label>
-              <ion-input type="text" [(ngModel)]="taskDescription"></ion-input>
+              <ion-input type="text" [(ngModel)]="taskDescriptions"  formControlName="taskDescription"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label position="floating">Days to finish</ion-label>
-              <ion-input type="number" [(ngModel)]="taskDays"></ion-input>
+              <ion-input type="number" [(ngModel)]="taskDayss"  formControlName="taskDays"></ion-input>
             </ion-item>
 
             <div margin-vertical text-right>
 
-              <ion-button fill="outline" color="danger">
+              <ion-button fill="outline"  color="danger" (click)="clearTask()">
                 <ion-icon name="close" slot="start"></ion-icon>
                 Clear
               </ion-button>
 
-              <ion-button>
+              <ion-button (click)="onsubmit()" color="success">
                 <ion-icon name="add" slot="start">
                 </ion-icon>
                 Add Task
@@ -57,4 +57,5 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  </form>
 </ion-content>

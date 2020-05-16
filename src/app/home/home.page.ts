@@ -35,5 +35,8 @@ export class HomePage implements OnInit {
   myprofile() {
     this.router.navigate(['/profile']);
   }
+  tasks(){
+      this.router.navigate(['/tasks']);
+  }
 
 }
