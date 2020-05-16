@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tasks"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{loadedTask.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h1 text-center>{{loadedTask.title}}</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h2>{{loadedTask.description}}</h2>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h2>Left days: {{loadedTask.daysLeft}}</h2>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col>
+        <ion-button>
+          <ion-icon name="checkmark-outline" slot="start"></ion-icon>Done
+        </ion-button>
+      </ion-col>
+
+      <ion-col>
+        <ion-button fill="outline" color="danger">
+          <ion-icon name="close-outline" slot="start"></ion-icon>Failed
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

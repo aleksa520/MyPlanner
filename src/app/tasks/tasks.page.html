@@ -1,0 +1,20 @@
+<ion-header translucent="true">
+  <ion-toolbar color="primary">
+    <ion-buttons collapse="true" slot="start">
+      <ion-icon name="arrow-back" (click)="goBack()"></ion-icon>
+    </ion-buttons>
+    <ion-title>My tasks</ion-title>
+    <ion-buttons collapse="true" slot="end">
+      <ion-icon name="add-outline" (click)="goToAddTask()"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <app-task-item *ngFor="let task of tasks" [taskItem]="task"></app-task-item>
+  </ion-list>
+
+
+</ion-content>

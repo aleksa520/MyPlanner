@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons collapse="true" slot="start">
+      <ion-back-button defaultHref="/tasks"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Task</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+
+    <ion-row>
+
+      <ion-col size-md="8" offset-md="2">
+        <ion-card>
+
+          <ion-card-header>
+            <ion-card-title>New Task</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-item>
+              <ion-label position="floating">Task</ion-label>
+              <ion-input type="text" [(ngModel)]="taskTitle"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Description</ion-label>
+              <ion-input type="text" [(ngModel)]="taskDescription"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Days to finish</ion-label>
+              <ion-input type="number" [(ngModel)]="taskDays"></ion-input>
+            </ion-item>
+
+            <div margin-vertical text-right>
+
+              <ion-button fill="outline" color="danger">
+                <ion-icon name="close" slot="start"></ion-icon>
+                Clear
+              </ion-button>
+
+              <ion-button>
+                <ion-icon name="add" slot="start">
+                </ion-icon>
+                Add Task
+              </ion-button>
+
+            </div>
+
+          </ion-card-content>
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
