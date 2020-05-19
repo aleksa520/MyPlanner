@@ -15,7 +15,15 @@ const routes: Routes = [
   {
     path: 'add-task',
     loadChildren: () => import('./add-task/add-task.module').then( m => m.AddTaskPageModule)
+  },  {
+    path: 'accomplished',
+    loadChildren: () => import('./accomplished/accomplished.module').then( m => m.AccomplishedPageModule)
+  },
+  {
+    path: 'failed',
+    loadChildren: () => import('./failed/failed.module').then( m => m.FailedPageModule)
   }
+
 ];
 
 @NgModule({

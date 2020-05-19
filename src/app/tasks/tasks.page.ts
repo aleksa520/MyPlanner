@@ -21,6 +21,14 @@ export class TasksPage implements OnInit {
     this.router.navigate(['/home']);
   }
 
+  goToAcc(){
+    this.router.navigate(['/tasks/accomplished']);
+  }
+
+  goToFailed(){
+    this.router.navigate(['/tasks/failed']);
+  }
+
   goToAddTask(){
     this.router.navigate(['/add']);
   }
