@@ -1,7 +1,7 @@
 export interface Task{
 
-    id: number;
-    title: string;
-    description:string;
+    TaskId: number;
+    Title: string;
+    Description: string;
     daysLeft: number;
 }

@@ -11,15 +11,15 @@ import { Task } from '../task.model';
 export class TaskDetailPage implements OnInit {
 
   loadedTask: Task;
-  constructor(private router:Router, private activatedRoute: ActivatedRoute, private tasksService: TasksService) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private tasksService: TasksService) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
-      if(!paramMap.has('taskId')){
+      if(!paramMap.has('TaskId')){
         this.router.navigate(['/tasks']);
         return;
       }
-      const taskId = paramMap.get('taskId');
+      const taskId = paramMap.get('TaskId');
       this.loadedTask = this.tasksService.getTask(parseInt(taskId));
     });
   }

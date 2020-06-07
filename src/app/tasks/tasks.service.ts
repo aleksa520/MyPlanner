@@ -1,36 +1,33 @@
 import { Injectable } from '@angular/core';
 import { Task } from './task.model';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TasksService {
 
-  constructor() { }
+  constructor(private Http: HttpClient) { }
+  private urlad = 'https://localhost:44336/api/UserProfile/GetTask'
+  tasks: Task[];
 
-  private tasks: Task[] = [
-    {
-      id: 1,
-      title: 'Trcanje svaki dan',
-      description: 'Trcanje svaki dan po pola 30 minuta ujutru pre dorucka',
-      daysLeft: 5,
-    },
-    {
-      id: 2,
-      title: 'Prestani pusiti cigare',
-      description: 'Izdrzi da ne pusis mesec dana',
-      daysLeft: 29
-    }
-  ];
-
-  getAllTasks() {
-    return [...this.tasks];
+  getDataFromAPI() {
+    this.Http.get('https://localhost:44336/api/UserProfile/GetTask').subscribe();
   }
+
+
+
+  getAllTasks(): Observable<Task[]> {
+    return this.Http.get<Task[]>(this.urlad)
+  }
+
+
 
   getTask(taskId: number) {
     return {
       ...this.tasks.find(task => {
-        return task.id === taskId;
+        return task.TaskId === taskId;
       })
     };
   }

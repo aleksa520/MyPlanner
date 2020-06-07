@@ -9,19 +9,24 @@ import { TasksService } from './tasks.service';
   styleUrls: ['./tasks.page.scss'],
 })
 export class TasksPage implements OnInit {
-  tasks:Task[];
-  
-  constructor(private router:Router, private tasksService: TasksService) { }
+  tasks: Task[] = [];
 
-  ngOnInit() {
-    this.tasks = this.tasksService.getAllTasks();
+  constructor(private router: Router, private tasksService: TasksService) { }
+
+  ngOnInit(): void {
+      this.getTasks();
+  }
+
+  getTasks(): void{
+    this.tasksService.getAllTasks()
+        .subscribe(tasks => this.tasks = tasks);
   }
 
   goBack() {
     this.router.navigate(['/home']);
   }
 
-  goToAddTask(){
+  goToAddTask() {
     this.router.navigate(['/add']);
   }
 

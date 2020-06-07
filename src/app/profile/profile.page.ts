@@ -28,7 +28,7 @@ export class ProfilePage implements OnInit {
   firstName: string = "this.userDetails.firstName"
   lastName: string = "Miric";
   username: string = "sisica";
-  password: string = "jasampeder";
+  password: string = "sifra";
   age: number = 20;
   show: boolean = false;
   showPassword = false;
