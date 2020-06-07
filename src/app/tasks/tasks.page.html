@@ -16,5 +16,12 @@
     <app-task-item *ngFor="let task of tasks" [taskItem]="task"></app-task-item>
   </ion-list>
 
+  <div class="ion-padding">
+    <ion-button expand="block" type="submit" class="ion-no-margin" (click)="goToAcc()">Accomplished</ion-button>
+  </div>
+
+  <div class="ion-padding">
+    <ion-button expand="block" color="danger" class="ion-no-margin" (click)="goToFailed()">Failed</ion-button>
+  </div>
 
 </ion-content>
