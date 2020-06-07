@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TasksService } from '../tasks.service';
 import { Task } from '../task.model';
@@ -15,12 +15,14 @@ export class TaskDetailPage implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
-      if(!paramMap.has('TaskId')){
+      if (!paramMap.has('taskId')) {
         this.router.navigate(['/tasks']);
         return;
       }
-      const taskId = paramMap.get('TaskId');
+
+      const taskId = paramMap.get('taskId');
       this.loadedTask = this.tasksService.getTask(parseInt(taskId));
+      console.log(this.loadedTask)
     });
   }
 

@@ -8,12 +8,15 @@ import { TasksService } from '../tasks.service';
   styleUrls: ['./failed.page.scss'],
 })
 export class FailedPage implements OnInit {
-  failedTasks:Task[];
-  
+  failedTasks: Task[];
   constructor(private tasksService: TasksService) { }
 
   ngOnInit() {
-    this.failedTasks = this.tasksService.getAllTasks();
+    this.getFailedTasks();
+  }
+  getFailedTasks(): void{
+    this.tasksService.getAllTasks()
+        .subscribe(failedTasks => this.failedTasks = failedTasks);
   }
 
 }

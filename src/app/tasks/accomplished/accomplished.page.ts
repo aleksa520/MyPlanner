@@ -8,12 +8,14 @@ import { TasksService } from '../tasks.service';
   styleUrls: ['./accomplished.page.scss'],
 })
 export class AccomplishedPage implements OnInit {
-  accTasks:Task[];
-  
+  accTasks: Task[];
   constructor( private tasksService: TasksService) { }
-
   ngOnInit() {
-    this.accTasks = this.tasksService.getAllTasks();
+    this.getAccomplishedTasks();
+  }
+  getAccomplishedTasks(): void{
+    this.tasksService.getAllTasks()
+        .subscribe(accTasks => this.accTasks = accTasks);
   }
 
 }
