@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Task } from './task.model';
 import { TasksService } from './tasks.service';
+import {observableToBeFn} from 'rxjs/internal/testing/TestScheduler';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-tasks',
@@ -15,9 +17,10 @@ export class TasksPage implements OnInit {
 
   ngOnInit() {
   this.getTasks();
-  console.log(this.tasks)
+  console.log('uzeti taksovi:' + new Date().toTimeString());
+  console.log(this.tasks);
   }
-  getTasks(): void{
+  getTasks() {
     this.tasksService.getAllTasks()
         .subscribe(tasks => this.tasks = tasks);
   }

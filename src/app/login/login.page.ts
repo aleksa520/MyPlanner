@@ -12,19 +12,20 @@ export class LoginPage implements OnInit {
 
   constructor(private router: Router, private Http: HttpClient, public alertController: AlertController) { }
   readonly BaseURL = 'https://localhost:44336/api';
-  ngOnInit() {
-    if(localStorage.getItem('token') != null)
-      this.router.navigateByUrl('/home');
-  }
 
-  username:string;
-  password:string;
+  username: string;
+  password: string;
+  ngOnInit() {
+    if (localStorage.getItem('token') != null) {
+      this.router.navigateByUrl('/home');
+    }
+  }
 
   async loginAlert() {
     const alert = await this.alertController.create({
 
       subHeader: 'Login failed!',
-      message: 'Username and pasword dont match.',
+      message: 'Username and password dont match.',
       buttons: ['OK']
     });
 
@@ -32,7 +33,7 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    var body = {
+    let body = {
       username : this.username,
       password : this.password
     };
@@ -47,7 +48,7 @@ export class LoginPage implements OnInit {
           console.log('token postavljen2');
         },
         err => {
-          if (err.status == 400){
+          if (err.status == 400) {
             this.loginAlert();
           }
         }
@@ -56,7 +57,7 @@ export class LoginPage implements OnInit {
     );
   }
 
-  register(){
+  register() {
     this.router.navigate(['/register']);
   }
 

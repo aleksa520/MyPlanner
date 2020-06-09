@@ -14,7 +14,7 @@ export class AccomplishedPage implements OnInit {
     this.getAccomplishedTasks();
   }
   getAccomplishedTasks(): void{
-    this.tasksService.getAllTasks()
+    this.tasksService.getAccTasks()
         .subscribe(accTasks => this.accTasks = accTasks);
   }
 

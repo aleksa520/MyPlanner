@@ -1,7 +1,7 @@
-export interface Task{
+export interface Task {
 
     TaskId: number;
     Title: string;
     Description: string;
-    daysLeft: number;
+    LeftDays: number;
 }

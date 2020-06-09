@@ -21,7 +21,15 @@ export class HomePage implements OnInit {
           console.log(err);
         },
     );
+    /*console.log(this.userDetails.userName + "kurac")
+    this.sendUser().subscribe();*/
   }
+ /* sendUser() {
+      let body  = {
+          username : this.userDetails.userName
+      };
+      return this.Http.post('https://localhost:44336/api/UserProfile/Session', body);
+  }*/
 
   Logout() {
     localStorage.removeItem('token');

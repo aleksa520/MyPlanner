@@ -15,7 +15,7 @@ export class FailedPage implements OnInit {
     this.getFailedTasks();
   }
   getFailedTasks(): void{
-    this.tasksService.getAllTasks()
+    this.tasksService.getFailedTasks()
         .subscribe(failedTasks => this.failedTasks = failedTasks);
   }
 

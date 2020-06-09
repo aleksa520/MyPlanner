@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tasks"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{loadedTask.Title}}</ion-title>
+    <ion-title>Task</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,17 +11,17 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <h1 text-center>{{loadedTask.Title}}</h1>
+        <h1 text-center *ngIf="loadedTask">{{loadedTask.Title}}</h1>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <h2>{{loadedTask.Description}}</h2>
+        <h2 *ngIf="loadedTask">{{loadedTask.Description}}</h2>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <h2>Left days: </h2>
+        <h2 *ngIf="loadedTask">Left days: {{loadedTask.LeftDays}} </h2>
       </ion-col>
     </ion-row>
 

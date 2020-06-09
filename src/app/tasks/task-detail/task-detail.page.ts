@@ -20,9 +20,11 @@ export class TaskDetailPage implements OnInit {
         return;
       }
 
-      const taskId = paramMap.get('taskId');
-      this.loadedTask = this.tasksService.getTask(parseInt(taskId));
+      let taskId = paramMap.get('taskId');
+      console.log(taskId)
+      this.loadedTask = this.tasksService.getTask(Number(taskId));
       console.log(this.loadedTask)
+      console.log('find:' + new Date().toTimeString());
     });
   }
 
