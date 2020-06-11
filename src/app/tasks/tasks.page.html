@@ -13,8 +13,8 @@
 <ion-content>
 
   <ion-list>
-    <ng-container *ngIf="tasks">
-    <app-task-item  *ngFor="let task of tasks " [taskItem]="task" ></app-task-item>
+    <ng-container *ngIf="tasks; else elseBlock">
+    <app-task-item  *ngFor="let task of tasks | async " [taskItem]="task" ></app-task-item>
     </ng-container>
   </ion-list>
 
@@ -27,3 +27,5 @@
   </div>
 
 </ion-content>
+
+<ng-template #elseBlock>Loading..</ng-template>

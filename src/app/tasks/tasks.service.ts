@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Task } from './task.model';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
+import {map} from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class TasksService {
   private urlfail = 'https://localhost:44336/api/UserProfile/GetFailedTask'
   private urlacc = 'https://localhost:44336/api/UserProfile/GetAccTask'
   tasks: Task[];
-  task1 : Task;
+  task1: Task;
 
 
 
@@ -27,19 +29,27 @@ export class TasksService {
   getAccTasks(): Observable<Task[]> {
     return this.Http.get<Task[]>(this.urlacc);
   }
+    findById(id: number): Observable<Task> {
+        let idBody = {TaskId: id};
+        return this.Http.post<Task>('https://localhost:44336/api/UserProfile/GetTaskByID', idBody);
+    }
+    failedTask(id: number){
+        let idBody = {TaskId: id};
+        return this.Http.post('https://localhost:44336/api/UserProfile/FailTask', idBody);
+    }
+    successTask(id: number){
+        let idBody = {TaskId: id};
+        return this.Http.post('https://localhost:44336/api/UserProfile/SuccessTask', idBody);
+    }
 
 
 
-   getTask(taskId: number) {
-    this.getAllTasks().subscribe(res => this.tasks = res);
-    console.log('getAllTask:' + new Date().toTimeString())
-    this.task1 = this.tasks.find(task => task.TaskId == taskId);
-    return this.task1;
-    /*return {
-        ...this.tasks.find(task => {
-        return task.TaskId == taskId;
-        console.log('find:' + new Date().toTimeString());
-      })
-    };*/
+    getTask(taskId: number): Observable<Task>  {
+     return this.findById(Number(taskId)).pipe(
+         map(res => {
+             this.task1 = res;
+             return this.task1;
+         })
+     );
   }
 }

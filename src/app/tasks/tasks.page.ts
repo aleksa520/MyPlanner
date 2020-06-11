@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { Task } from './task.model';
 import { TasksService } from './tasks.service';
 import {observableToBeFn} from 'rxjs/internal/testing/TestScheduler';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
+
 
 @Component({
   selector: 'app-tasks',
@@ -11,18 +12,17 @@ import {Observable} from 'rxjs';
   styleUrls: ['./tasks.page.scss'],
 })
 export class TasksPage implements OnInit {
-  tasks: Task[];
+  tasks: Observable<Task[]>  = of([]);
+
 
   constructor(private router: Router, private tasksService: TasksService) { }
 
   ngOnInit() {
   this.getTasks();
-  console.log('uzeti taksovi:' + new Date().toTimeString());
-  console.log(this.tasks);
   }
   getTasks() {
     this.tasksService.getAllTasks()
-        .subscribe(tasks => this.tasks = tasks);
+        .pipe(tasks => this.tasks = tasks);
   }
   goBack() {
     this.router.navigate(['/home']);

@@ -7,34 +7,35 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="loadedTask; else elseBlock">
   <ion-grid>
     <ion-row>
       <ion-col>
-        <h1 text-center *ngIf="loadedTask">{{loadedTask.Title}}</h1>
+        <h1 text-center >{{loadedTask.Title}}</h1>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <h2 *ngIf="loadedTask">{{loadedTask.Description}}</h2>
+        <h2>{{loadedTask.Description}}</h2>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <h2 *ngIf="loadedTask">Left days: {{loadedTask.LeftDays}} </h2>
+        <h2>Left days: {{loadedTask.LeftDays}} </h2>
       </ion-col>
     </ion-row>
+
 
     <ion-row>
 
       <ion-col>
-        <ion-button>
+        <ion-button (click)="buttonSuccess()">
           <ion-icon name="checkmark-outline" slot="start"></ion-icon>Done
         </ion-button>
       </ion-col>
 
       <ion-col>
-        <ion-button fill="outline" color="danger">
+        <ion-button fill="outline" color="danger" (click)="buttonFailed()">
           <ion-icon name="close-outline" slot="start"></ion-icon>Failed
         </ion-button>
       </ion-col>
@@ -43,3 +44,5 @@
   </ion-grid>
 
 </ion-content>
+
+<ng-template #elseBlock>Loading..</ng-template>

@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {AlertController} from "@ionic/angular";
+import {TasksService} from '../tasks.service';
 
 @Component({
   selector: 'add',
@@ -11,7 +12,8 @@ import {AlertController} from "@ionic/angular";
 })
 export class AddTaskPage implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private Http: HttpClient, public alertController: AlertController) {
+  constructor(private formBuilder: FormBuilder, private router: Router,
+              private Http: HttpClient, public alertController: AlertController) {
     this.TaskForm = this.formBuilder.group({
       taskTitle: new FormControl('', Validators.compose([
         Validators.required
@@ -60,13 +62,14 @@ export class AddTaskPage implements OnInit {
      this.taskDayss = null;
   }
 
+
   onsubmit() {
     this.addPlan().subscribe(
         (res: any) => {
           if (res.status == 200) {
             this.addPlanAlert();
             this.router.navigate(['/tasks']);
-          }
+            }
         });
 
   }

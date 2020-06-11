@@ -23,24 +23,28 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then(m => m.ProfilePageModule)
+    loadChildren: () => import('./profile/profile.module').then(m => m.ProfilePageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'tasks',
     children: [
       {
         path: '',
-        loadChildren: () => import('./tasks/tasks.module').then(m => m.TasksPageModule)
+        loadChildren: () => import('./tasks/tasks.module').then(m => m.TasksPageModule),
+        canActivate: [AuthGuard]
       },
       {
         path: ':taskId',
-        loadChildren: () => import('./tasks/task-detail/task-detail.module').then(m => m.TaskDetailPageModule)
+        loadChildren: () => import('./tasks/task-detail/task-detail.module').then(m => m.TaskDetailPageModule),
+        canActivate: [AuthGuard]
       }
-    ]
+    ], canActivate: [AuthGuard]
   },
   {
     path: 'add',
-    loadChildren: () => import('./tasks/add-task/add-task.module').then(m => m.AddTaskPageModule)
+    loadChildren: () => import('./tasks/add-task/add-task.module').then(m => m.AddTaskPageModule),
+    canActivate: [AuthGuard]
   },
 ];
 

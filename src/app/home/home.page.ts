@@ -21,7 +21,7 @@ export class HomePage implements OnInit {
           console.log(err);
         },
     );
-    /*console.log(this.userDetails.userName + "kurac")
+    /*console.log(this.userDetails.userName + "")
     this.sendUser().subscribe();*/
   }
  /* sendUser() {
@@ -43,7 +43,7 @@ export class HomePage implements OnInit {
   myprofile() {
     this.router.navigate(['/profile']);
   }
-  tasks(){
+  tasks() {
       this.router.navigate(['/tasks']);
   }
 
