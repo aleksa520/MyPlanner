@@ -1,6 +1,7 @@
 import { OnInit, Component} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {HttpHeaders, HttpClient} from '@angular/common/http';
+import {TasksService} from '../tasks/tasks.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,11 @@ import {HttpHeaders, HttpClient} from '@angular/common/http';
 export class HomePage implements OnInit {
   userDetails;
 
-  constructor(private router: Router, private Http: HttpClient) {}
+  constructor(private router: Router, private Http: HttpClient, private route: ActivatedRoute) {
+      this.route.params.subscribe(params => {
+          this.getUserProfile();
+      });
+  }
 
   ngOnInit() {
     this.getUserProfile().subscribe(
@@ -21,17 +26,8 @@ export class HomePage implements OnInit {
           console.log(err);
         },
     );
-    /*console.log(this.userDetails.userName + "")
-    this.sendUser().subscribe();*/
   }
- /* sendUser() {
-      let body  = {
-          username : this.userDetails.userName
-      };
-      return this.Http.post('https://localhost:44336/api/UserProfile/Session', body);
-  }*/
-
-  Logout() {
+   Logout() {
     localStorage.removeItem('token');
     this.router.navigate(['login']);
   }

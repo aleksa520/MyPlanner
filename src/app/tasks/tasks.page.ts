@@ -4,6 +4,8 @@ import { Task } from './task.model';
 import { TasksService } from './tasks.service';
 import {observableToBeFn} from 'rxjs/internal/testing/TestScheduler';
 import {Observable, of} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -13,13 +15,16 @@ import {Observable, of} from 'rxjs';
 })
 export class TasksPage implements OnInit {
   tasks: Observable<Task[]>  = of([]);
-
-
-  constructor(private router: Router, private tasksService: TasksService) { }
+  constructor(private router: Router, private tasksService: TasksService, private route: ActivatedRoute) {
+    this.route.params.subscribe(params =>{
+      this.getTasks();
+    })
+  }
 
   ngOnInit() {
   this.getTasks();
   }
+
   getTasks() {
     this.tasksService.getAllTasks()
         .pipe(tasks => this.tasks = tasks);

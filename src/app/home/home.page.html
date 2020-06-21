@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
       Home page
     </ion-title>
@@ -38,17 +38,18 @@
       <ion-icon name="person" slot="start"></ion-icon>
       <ion-label>My Profile</ion-label>
     </ion-item>
-  
-    <ion-item href="#">
-      <ion-icon name="add-circle" slot="start"></ion-icon>
-      <ion-label>Make a Plan</ion-label>
-    </ion-item>
+
   
     <ion-item (click)="Logout()">
       <ion-icon name="close-circle" slot="start"></ion-icon>
-      <ion-label *ngIf="userDetails">Logout {{userDetails.firstName}}</ion-label>
+      <ion-label>Logout </ion-label>
     </ion-item>
   </ion-card>
 
 
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>© 2020 - Lazar and Aleksa</ion-title>
+  </ion-toolbar>
+</ion-footer>

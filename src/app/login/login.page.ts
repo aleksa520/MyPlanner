@@ -44,6 +44,7 @@ export class LoginPage implements OnInit {
         (res: any) => {
           localStorage.setItem('token', res.token);
           console.log('token postavljen');
+          sessionStorage.setItem('user', this.username);
           this.router.navigateByUrl('/home');
           console.log('token postavljen2');
         },

@@ -66,21 +66,21 @@ export class RegisterPage implements OnInit {
     ],
 
     email: [
-      { type: 'required', message: 'Email is required.' },
-      { type: 'minlength', message: 'Email length.' },
-      { type: 'maxlength', message: 'Email length.' },
-      { type: 'required', message: 'please enter a valid email address.' }
+      { type: 'required', message: 'Username is required.' },
+      { type: 'minlength', message: 'Username length.' },
+      { type: 'maxlength', message: 'Username length.' },
+      { type: 'required', message: 'Please enter a username email address.' }
     ],
 
     password: [
-      { type: 'required', message: 'password is required.' },
-      { type: 'minlength', message: 'password length.' },
-      { type: 'maxlength', message: 'password length.' }
+      { type: 'required', message: 'Password is required.' },
+      { type: 'minlength', message: 'Password too short.' },
+      { type: 'maxlength', message: 'Password length.' }
     ],
     confirmpassword: [
-      { type: 'required', message: 'password is required.' },
-      { type: 'minlength', message: 'password length.' },
-      { type: 'maxlength', message: 'password length.' },
+      { type: 'required', message: 'Confirm password is required.' },
+      { type: 'minlength', message: 'Password too short.' },
+      { type: 'maxlength', message: 'Password length.' },
     ],
   };
 

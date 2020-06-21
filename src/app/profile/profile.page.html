@@ -33,15 +33,6 @@
       <ion-input *ngIf="userDetails">{{userDetails.userName}}</ion-input>
       <br>
     </ion-item>
-
-    <ion-item>
-      <br>
-      <ion-label position="stacked">Password</ion-label>
-      <ion-input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password"></ion-input>
-      <ion-icon (click)="togglePassword()" [name]="passwordTogleItem" color="gray" slot="end"></ion-icon>
-      <br>
-    </ion-item>
-
     <ion-item>
       <br>
       <ion-label position="stacked">Age</ion-label>
@@ -50,7 +41,11 @@
     </ion-item>
 
   </ion-list>
-  <div class="ion-padding">
-    <ion-button (click)="onsubmit()" expand="block" type="submit" class="ion-no-margin">Save Changes</ion-button>
-  </div>
+
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>© 2020 - Lazar and Aleksa</ion-title>
+  </ion-toolbar>
+</ion-footer>

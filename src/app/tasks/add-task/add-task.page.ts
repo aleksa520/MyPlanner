@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {AlertController} from "@ionic/angular";
+import {AlertController, NavController} from '@ionic/angular';
 import {TasksService} from '../tasks.service';
+import { Task } from '../task.model';
 
 @Component({
   selector: 'add',
@@ -46,13 +47,16 @@ export class AddTaskPage implements OnInit {
     await alert.present();
   }
 
+
+
   addPlan() {
     const body = {
       Title: this.taskTitles,
       Description: this.taskDescriptions,
       Days: this.taskDayss,
-      UserName : 'aleksa12'
+      UserName : sessionStorage.getItem('user')
     };
+
     return this.Http.post(this.BaseURL + '/UserProfile/AddTask', body, {observe: 'response'});
   }
 
